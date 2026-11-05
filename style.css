@@ -1,0 +1,183 @@
+/* ===== Base ===== */
+:root {
+  --verde: #1f4d3a;
+  --verde-escuro: #143426;
+  --ouro: #e8b93c;
+  --papel: #faf6ee;
+  --tinta: #22211d;
+  --borda: #e3dccb;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: "Trebuchet MS", "Segoe UI", sans-serif;
+  line-height: 1.55;
+  color: var(--tinta);
+  background: var(--papel);
+}
+
+h1, h2, h3 { font-family: Georgia, "Times New Roman", serif; line-height: 1.2; margin: 0; }
+p { margin: 0; }
+a { color: inherit; }
+ul { list-style: none; margin: 0; padding: 0; }
+
+/* Área útil: máx. 1100px, contando 24px de padding de cada lado */
+.container {
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* ===== Flex 1: cabeçalho (row, extremidades, centralizado verticalmente) ===== */
+.site-header { background: var(--verde-escuro); color: #fff; }
+.header-inner {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px 24px;
+  padding-top: 16px;
+  padding-bottom: 16px;
+}
+.logo { font: bold 1.5rem Georgia, serif; text-decoration: none; color: var(--ouro); }
+
+/* ===== Flex 2: menu (row, links agrupados à direita) ===== */
+.menu { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 8px 20px; }
+.menu a { text-decoration: none; padding: 6px 2px; border-bottom: 2px solid transparent; }
+.menu a:hover, .menu a:focus-visible { border-bottom-color: var(--ouro); }
+
+/* ===== Flex 3: apresentação (row + wrap, texto e bloco lado a lado) ===== */
+.hero { background: var(--verde); color: #fff; }
+.hero-inner {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 32px;
+  padding-top: 56px;
+  padding-bottom: 56px;
+}
+.hero-text {
+  flex: 1 1 360px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 16px;
+}
+.hero h1 { font-size: clamp(1.8rem, 5vw, 2.8rem); overflow-wrap: anywhere; }
+
+/* ===== Flex 4: bloco informativo (column, itens centralizados) ===== */
+.hero-info {
+  flex: 1 1 260px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  padding: 24px;
+  background: var(--verde-escuro);
+  border: 2px dashed var(--ouro);
+  border-radius: 12px;
+  text-align: center;
+}
+.hero-info strong { display: block; font: bold 1.8rem Georgia, serif; color: var(--ouro); }
+
+/* ===== Flex 5: título da coleção + contagem ===== */
+.collection { padding: 48px 0; }
+.section-header {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 8px 16px;
+  margin-bottom: 24px;
+}
+.count { color: var(--verde); font-weight: bold; }
+
+/* ===== Flex 6: lista de cards (wrap + gap de 20px) ===== */
+.cards {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: stretch;      /* cards da mesma linha com mesma altura */
+  gap: 20px;
+}
+
+/* ===== Flex 7: card (column; ação fica embaixo) ===== */
+.card {
+  flex: 1 1 300px;           /* base 300px: 3 por linha em 1280, 2 em 768, 1 em 360 */
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: 16px;
+  background: #fff;
+  border: 1px solid var(--borda);
+  border-radius: 12px;
+  overflow-wrap: anywhere;   /* palavras longas não estouram o card */
+}
+.card-body { flex: 1 1 auto; display: flex; flex-direction: column; gap: 8px; }
+.card h3 { font-size: 1.35rem; }
+.category { font-weight: bold; color: var(--verde); }
+
+/* ===== Flex 8: bloco visual temático (centraliza o ícone) ===== */
+.card-visual {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 96px;
+  font-size: 3rem;
+  border-radius: 8px;
+}
+.v1 { background: #f6d28b; } .v2 { background: #a9d6c1; } .v3 { background: #f2b5c4; }
+.v4 { background: #c9c3e8; } .v5 { background: #b8cbe0; } .v6 { background: #f0b99b; }
+
+/* ===== Flex 9: metadados (row, um em cada ponta) ===== */
+.card-meta {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px 12px;
+  padding-top: 12px;
+  border-top: 1px solid var(--borda);
+  font-size: 0.9rem;
+}
+
+/* Botão: no fim da coluna porque .card-body cresce e ocupa a sobra */
+.btn {
+  display: block;
+  padding: 10px 16px;
+  text-align: center;
+  text-decoration: none;
+  font-weight: bold;
+  color: #fff;
+  background: var(--verde);
+  border-radius: 8px;
+}
+.btn:hover, .btn:focus-visible { background: var(--verde-escuro); }
+.btn-light { display: inline-block; background: var(--ouro); color: var(--tinta); }
+.btn-light:hover, .btn-light:focus-visible { background: #f3cb62; }
+
+/* ===== Sobre ===== */
+.about { padding: 40px 0 56px; background: #efe8d6; }
+.about .container { display: flex; flex-direction: column; gap: 12px; }
+.about p { max-width: 70ch; }
+
+/* ===== Flex 10: rodapé (row + wrap, grupos se reorganizam) ===== */
+.site-footer { background: var(--verde-escuro); color: #fff; }
+.footer-inner {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px 24px;
+  padding-top: 24px;
+  padding-bottom: 24px;
+}
+.footer-name { font: bold 1.2rem Georgia, serif; color: var(--ouro); }
+.site-footer a { color: var(--ouro); }
